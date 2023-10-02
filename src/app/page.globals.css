@@ -1,0 +1,22 @@
+.featuredmusicBtn{
+    display: none;
+  }
+  
+  .featuredMusics:hover .featuredmusicBtn{
+    display: block;
+    transition-duration: 300ms;
+  }
+  
+  .playListCardBtn{
+    display: none;
+  }
+  .playListCard{
+    cursor: pointer;
+    transition: all ease-in-out;
+  }
+  .playListCard:hover{
+    transition-duration: 250ms;
+  }
+  .playListCard:hover .playListCardBtn{
+    display: block;
+  }

@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* .musicRange {
+  width: 100%;
+  appearance: none;
+  background-color: #3a3a3a;
+  height: 4px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 1500ms cubic-bezier(0, 0.9, 0.8, 1.12);
+} */
+.musicRange:hover::-webkit-slider-thumb{
+  appearance: none;
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: white;
+  
+}
+.musicRange:disabled::-webkit-slider-thumb{
+  display: none;
+}
+.musicRange::-webkit-slider-thumb {
+ display: none;
+
+
+}
+
+/* .volumeRange{
+  width: 100%;
+  appearance: none;
+  background-color: #3a3a3a;
+  height: 3px;
+  border-radius: 10px;
+  cursor: pointer;
+  
+} */
+.volumeRange::-webkit-slider-thumb {
+  display: none;
+ }
+ .volumeRange:hover::-webkit-slider-thumb{
+  appearance: none;
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: white;
+  
+}

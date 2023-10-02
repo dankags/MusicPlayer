@@ -1,0 +1,12 @@
+.searchInput{
+    outline: none;
+}
+.searchInput:focus{
+    outline: none;
+}
+.searchContainer{
+    background-color: rgba(255, 255, 255,0.1);
+}
+.searchInput:focus .searchContainer{
+    background-color: rgba(255, 255, 255,0.4);
+}

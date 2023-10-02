@@ -1,0 +1,21 @@
+.container{
+    position: relative;
+    background-image: linear-gradient(to top, #121212,rgba(0,0,0,0.6));
+}
+.container::-webkit-scrollbar{
+    position: absolute;
+    width: 10px;
+    top: 2%;
+    right: 30px;
+   
+}
+.container::-webkit-scrollbar-thumb{
+    background-color:rgb(95, 95, 95);
+}
+.container::-webkit-scrollbar-track{
+    background-color: transparent;
+
+}
+.listContainer{
+    background-image: linear-gradient(to top, #121212,rgba(0,0,0,0.6));
+}

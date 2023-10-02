@@ -1,0 +1,12 @@
+.artistCardBtn{
+    display: block;
+    opacity: 0;
+    transition:opacity 750ms;
+    
+}
+.artsistCard:hover{
+    transition: all 250ms ease-in;
+}
+.artsistCard:hover .artistCardBtn{
+   opacity: 1; 
+}

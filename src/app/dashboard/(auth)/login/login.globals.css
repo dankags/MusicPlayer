@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.checkBox{
+    appearance:none;
+    -webkit-appearance: none;
+    height: 18px;
+    width: 35px;
+    position: relative;
+    border-radius: 20px;
+    border:2px solid grey;
+    outline:none;
+    padding: 3px 2px;
+    cursor: pointer;
+}
+.checkBox::before{
+   content:"";
+   height: 12px;
+   width: 12px;
+   border-radius: 50%;
+   background-color:white;  
+   position: absolute;
+   top:1px; 
+   /* transform: translateY(-50%); */
+   transition: 500ms ease-out;
+
+}
+.checkBox:checked{
+    transition: 250ms ease-out;
+    background-color: rgba(34,197,94);
+    border:none;
+}
+.checkBox:checked::before{
+    position: absolute;
+    top:3px; 
+    background-color: #171717;
+    /* transform: translateY(-50%); */
+    transform: translateX(18px);
+}
