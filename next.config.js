@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    domains:["lh3.googleusercontent.com","firebasestorage.googleapis.com"]
+    images:{
+     domains:["lh3.googleusercontent.com","res.cloudinary.com"]
+    },
+    
 }
 
 module.exports = nextConfig
