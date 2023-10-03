@@ -48,7 +48,7 @@ export const RightBar = () => {
 
  
   return (
-    <div className={` col-span-${right?rightBar.current.width:"3"}`} style={showRightBar ? {display:"block"} : {display:"none"}}>
+    <div className={` col-span-3`} style={showRightBar ? {display:"block"} : {display:"block"}}>
       <main className='w-full h-full rounded-lg dark:bg-neutral-900 flex flex-col items-center overflow-y-scroll  scrollbar-thin scrollbar-thumb-neutral-500'>
         <div className='w-full p-2'>
             <div className='flex w-full items-center justify-between gap-9 py-2 px-3'>

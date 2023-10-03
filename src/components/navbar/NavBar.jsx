@@ -6,7 +6,7 @@ import {
   Pause,
   PlayArrow,
 } from "@mui/icons-material";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -15,8 +15,12 @@ import { useRef, useState } from "react";
 export const NavBar = () => {
   const [play, setPlay] = useState(false);
   const [menuState,setMenuState] = useState(false)
-  const router=useRouter()
-
+  const router = useRouter();
+  const { status } = useSession();
+  console.log(status);
+  if (status === 'unauthenticated') {
+    router.push("dashboard/login")
+  }
 
   const handlePause = () => {
     play ? setPlay(!play) : setPlay(!play);

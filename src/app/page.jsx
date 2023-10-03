@@ -19,7 +19,7 @@ export default function Home() {
     setCenterBarWidth(center);
   },[center])
   return (
-    <div className={`flex-initial h-full w-full dark:bg-neutral-900 rounded-md  col-span-${centerBarWidth?centerBarWidth:"5"}`}>
+    <div className={`flex-initial h-full w-full dark:bg-neutral-900 rounded-md  col-span-5`}>
     <div className='overflow-y-scroll w-full h-full relative rounded-md scrollbar-thin scrollbar-thumb-neutral-700  '>
       <div className='sticky top-0 left-0 bg-blue-900 transparent z-10'><NavBar /></div>  
       <div className='w-full mb-4 dark:bg-gradient-to-t from-neutral-900 to-blue-900 '>
