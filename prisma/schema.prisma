@@ -54,3 +54,49 @@ model VerificationToken {
 
   @@unique([identifier, token])
 }
+
+model Artist{
+  id String @id @default(uuid()) @map("_id")
+  name String @unique
+  profileImg String
+  backImg String?
+  artistAbout String?
+  
+  musics Music[]
+  playList Playlist @relation(fields: [name],references: [artistName])
+}
+
+model Music{
+  id  String @id @default(uuid()) @map("_id") 
+  musicName String @unique
+  categoryName String @unique
+  artistNames String[] 
+  viewsNumber String
+  musicImage String
+  audioUrl String
+  endTime String
+  
+  artist Artist @relation(fields: [artistNames],references: [name] )
+  song Playlist @relation(fields: [artistNames],references: [artistName])
+  category Category @relation(fields: [categoryName],references: [category])
+} 
+
+model Category{
+  id String @id @default(uuid()) @map("_id") 
+  category String @unique
+  backgroundColor String @unique
+  backgroundImg String
+
+  musics Music[] 
+}
+
+model Playlist{
+  id String @id @default(uuid()) @map("_id")
+  artistName String @unique
+  playlistName String @unique
+  plalistImg String
+  playlistDesc String ?
+
+  artist Artist[]
+  songs Music[]
+}

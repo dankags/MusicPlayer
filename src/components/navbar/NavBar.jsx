@@ -16,8 +16,8 @@ export const NavBar = () => {
   const [play, setPlay] = useState(false);
   const [menuState,setMenuState] = useState(false)
   const router = useRouter();
-  const { status } = useSession();
-  console.log(status);
+  const {data, status } = useSession();
+  console.log(data,status);
   if (status === 'unauthenticated') {
     router.push("dashboard/login")
   }
@@ -73,10 +73,11 @@ export const NavBar = () => {
         <div className="h-8 w-8">
           <span onClick={handleDropDownMenu} className="no-underline cursor-pointer">
             <Image
-              src="/crow.jpg"
+              src={data?.user.image}
               alt="userProfile"
               width={250}
               height={250}
+              title={data?.user.name}
               className="w-full h-full rounded-full object-cover"
             />
           </span>
