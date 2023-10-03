@@ -16,10 +16,13 @@ const ArtistId = () => {
     centerBarWidth.current.state=center
   },[center])
   return (
-    <div className={`${center?centerBarWidth.current.state: "col-span-5"} bg-red-700 rounded-md`} >
+    <div className={`col-span-5 rounded-md`} >
       <div className='w-full h-full rounded-md bg-cover relative scrollbar-thin scrollbar-thumb-neutral-700'>
-      <Image src='/allanWalker.jpg' alt='' fill={true} className='object-cover rounded-lg sticky top-0' />
-      <main className='w-full h-full rounded-lg overflow-y-scroll scrollbar-thin scrollbar-thumb-neutral-700 scrollbar-track-neutral-800 absolute top-0 dark:bg-neutral-900 dark:bg-opacity-50'>
+        <div className='absolute top-0 left-0 w-full h-4/6'>
+         <Image src='/ab67618600001016232ef59d01ff851d81cc8b60.jpg' alt='' fill={true} className='h-32 object-cover rounded-lg sticky top-0' />
+       </div>
+      
+      <main className='w-full h-full rounded-lg overflow-y-scroll scrollbar-thin scrollbar-thumb-neutral-700 scrollbar-track-neutral-800 absolute top-0 dark:bg-neutral-900 dark:bg-opacity-50 ' >
         <NavBar/>
        <div className='w-full h-52 flex flex-col justify-center pl-4'>
          <div className='h-1/6 flex items-center gap-2'>
@@ -27,7 +30,7 @@ const ArtistId = () => {
            <span className='flex items-center font-medium text-sm'>Verified Artist</span>
          </div>
          <div className=' h-3/6 flex flex-col justify-center'>
-           <span className='text-6xl dark:text-white font-black'>Alan Walker</span>
+           <span className='text-6xl dark:text-white font-bold'>Alan Walker</span>
          </div>
          <div className='h-2/6 flex flex-col justify-center'>
            <p className='text-base font-medium'>31,976,259 <span className='text-sm'>monthly listeners </span></p>
@@ -94,7 +97,7 @@ const ArtistId = () => {
             <div className='dark:bg-neutral-900 flex flex-col py-4 gap-2'>
               <span className='text-xl font-semibold'>About</span>
               <div className='w-full h-96 overflow-hidden rounded-sm flex items-center relative'>
-                <Image src='/pexels-wendy-wei-1190297.jpg' alt='' fill={true} className='object-cover w-full h-full rounded-sm ' />
+                <Image src='/ab6761670000ecd47145333607578eb5c6caea1f.jpg' alt='' fill={true} className='object-cover w-full h-full rounded-sm ' />
                 <div className='w-full h-full relative top-0 left-0 dark:bg-gradient-to-t from-neutral-900/75 '></div>
                   <div className='w-24 h-24 rounded-full p-2 flex flex-col justify-center items-center dark:bg-sky-600 dark:text-white absolute right-5 top-5 '>
                     <span className='text-xl font-semibold'>118 #</span>
@@ -105,7 +108,7 @@ const ArtistId = () => {
                     <span className='text-base dark:text-white'>31,756,456  </span>
                     <span className='text-sm dark:text-white'>monthly listeners</span>
                   </p>
-                  <p className='text-base dark:text-sm font-normal overflow-hidden text-ellipsis'>
+                  <p className='text-base dark:text-sm font-normal overflow-hidden text-ellipsis pr-3'>
                      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facilis, reiciendis, hic recusandae illo beatae eveniet quia quis obcaecati unde explicabo tempore qui tempora nesciunt, provident earum sequi necessitatibus repellat. Harum.
                   </p>
                    </div>

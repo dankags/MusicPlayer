@@ -18,9 +18,9 @@ export const NavBar = () => {
   const router = useRouter();
   const {data, status } = useSession();
   console.log(data,status);
-  if (status === 'unauthenticated') {
-    router.push("dashboard/login")
-  }
+  // if (status === 'unauthenticated') {
+  //   router.push("dashboard/login")
+  // }
 
   const handlePause = () => {
     play ? setPlay(!play) : setPlay(!play);

@@ -8,11 +8,21 @@ import './page.globals.css'
 import { useContext, useEffect, useState } from 'react'
 import { UiContext } from '@/providers/UiContext/MainUi'
 import { useSession } from 'next-auth/react'
+import {cloudInary} from "@/utils/cloudinaryConfig"
 
 export default function Home() {
   const {data}=useSession()
   const { center } = useContext(UiContext)
-  const [centerBarWidth,setCenterBarWidth] =useState('5')
+  const [centerBarWidth, setCenterBarWidth] = useState('5')
+  
+  useEffect(() => {
+    cloudInary.v2.uploader("/crow.jpg", { public_id: "crow" }, (error, result) => {
+      error ?
+        console.log(error)
+        :
+        console.log(result);
+    })
+  },[])
 
   useEffect(() => {
     // router.refresh()

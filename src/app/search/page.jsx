@@ -10,6 +10,7 @@ import "./search.globals.css"
 
 const Search = () => {
   const router = useRouter();
+  
 
   return (
     <div className='col-span-5 w-full h-full rounded-md relative overflow-y-scroll scrollbar-thin scrollbar-thumb-neutral-700 bg-neutral-900'>
