@@ -60,8 +60,8 @@ export const NavBar = () => {
         </div>
       </div>
       <div className="w-6/12 flex items-center justify-end gap-2">
-        <div className="p-1 ml-2 rounded-2xl dark:bg-neutral-50 cursor-pointer">
-          <span className="font-semibold text-xs text-neutral-900 p-1 rounded-2xl ">
+        <div className="p-1 ml-2 flex items-center rounded-2xl dark:bg-neutral-50 cursor-pointer">
+          <span className="font-bold text-xs text-ellipsis overflow-hidden whitespace-nowrap text-neutral-900 p-1 rounded-2xl ">
             Explore premium
           </span>
         </div>

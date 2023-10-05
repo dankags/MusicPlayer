@@ -8,7 +8,7 @@ export const ArtistComp = () => {
         <Image src='/allan.webp' alt='' width={48} height={48} className='rounded-full'/>
        </div>
        <div className='w-10/12 px-2 flex flex-col'>
-          <span className='text-base font-normal'>Lady Jaydee</span>
+          <span className='text-base font-medium'>Lady Jaydee</span>
           <span className='dark:text-stone-400 text-sm font-normal'>Artist</span>
        </div>
     </div>

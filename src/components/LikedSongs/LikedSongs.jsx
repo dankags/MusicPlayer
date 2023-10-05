@@ -12,7 +12,7 @@ export const LikedSongs = () => {
        </div>
        <div className='w-4/6 px-2'>
          <div>
-            <span className='mb-2 text-base font-normal dark:text-green-500'>Liked Songs</span>
+            <span className='mb-2 text-base font-medium dark:text-green-500'>Liked Songs</span>
          </div>
          <div className='flex items-center'>
             <span className='mr-2 text-xs text-green-500'>

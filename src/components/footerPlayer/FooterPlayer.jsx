@@ -5,6 +5,7 @@ import {
   FavoriteBorderOutlined,
   FavoriteSharp,
   KeyboardArrowDownRounded,
+  KeyboardArrowUpRounded,
   LoopOutlined,
   PauseCircle,
   PictureInPicture,
@@ -40,7 +41,7 @@ export const FooterPlayer = () => {
 
 
   useEffect(() => {
-    setAudio(new Audio("/Ascence - Places Like That [NCS Release].mp3"));
+    setAudio(new Audio("/Alan Walker _The Spectre (Lyrics _ Lyrics Video) (1).mp3"));
     volumeSlider.current.style.background = `linear-gradient(to right, ${color.current.color} ${volumeProgress}%,#3a3a3a ${volumeProgress}%)`;
   }, []);
   // console.log(audio);
@@ -116,10 +117,11 @@ export const FooterPlayer = () => {
       }
     })
   }, [audio?.src])
-  useEffect(() => {
-    // rightDispaly==="none"&& setShowRightBar(!showRightBar)
-    showRightBar?setRightDisplay("block") : setRightDisplay("none")
-  },[showRightBar])
+  const handleShowRightBar = () => {
+    setShowRightBar(!showRightBar)
+    rightDispaly ? setRightDisplay("none") : setRightDisplay("block");
+  }
+  
  
 
   return (
@@ -127,8 +129,12 @@ export const FooterPlayer = () => {
       <div className="flex items-center w-3/12">
         <div className="w-2/6 pr-3 flex items-center justify-end">
           <div className="group relative">
-          <button className="group-hover:opacity-100 group-hover:transition-opacity opacity-0 absolute right-1 top-1 rounded-full bg-neutral-900/90 text-neutral-50 " onClick={()=>setShowRightBar(!showRightBar)}>
-            <KeyboardArrowDownRounded/>
+          <button className="group-hover:opacity-100 group-hover:transition-opacity opacity-0 absolute right-1 top-1 rounded-full bg-neutral-900/90 text-neutral-50 " onClick={handleShowRightBar}>
+              {showRightBar ?
+                <KeyboardArrowDownRounded/>
+                :
+                <KeyboardArrowUpRounded/>
+              } 
           </button>
           <Image
             src="/spectreAllanWalker.png"
@@ -142,13 +148,13 @@ export const FooterPlayer = () => {
         <div className="flex flex-col w-3/6">
           <Link
             href="/playlist/qwheh923dwion2dj0"
-            className="text-sm cursor-pointer hover:underline"
+            className="text-sm font-medium cursor-pointer hover:underline"
           >
             Spectre
           </Link>
           <Link
             href="/artist/dduiwheui298d9dj"
-            className="text-xs dark:text-stone-400 cursor-pointer whitespace-nowrap overflow-hidden text-ellipsis hover:underline"
+            className="text-xs font-normal dark:text-stone-400 cursor-pointer whitespace-nowrap overflow-hidden text-ellipsis hover:underline"
           >
             Allan Walker
           </Link>
@@ -189,9 +195,9 @@ export const FooterPlayer = () => {
           </button>
         </div>
         <div className="flex items-center justify-center mt-3 ">
-          <span className="w-1/12 text-right dark:text-stone-400 text-xs font-normal">
+          <span className="w-1/12 text-right dark:text-stone-400 text-xs font-medium">
             {audio?.src ?
-              `${currentMin}:${currentSec}`
+              `${currentMin} : ${currentSec}`
               :
               `--:--`
             }
@@ -219,7 +225,7 @@ export const FooterPlayer = () => {
               
             />
           </div>
-          <span className="2/12 dark:text-stone-400 text-xs font-normal">
+          <span className="2/12 dark:text-stone-400 text-xs font-medium">
             {audio?.duration ?
              `
               ${ Math.floor(audio?.duration % 3600 / 60) < 10 ? `0${Math.floor(audio?.duration % 3600 / 60)}` : Math.floor(audio?.duration % 3600 / 60) }

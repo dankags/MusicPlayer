@@ -23,6 +23,8 @@ const poppins = Poppins({
 
 export default function RootLayout({ children }) {
   const path = usePathname()
+  const { right,center } = useContext(UiContext)
+  console.log(`${center}`);
     return (
     <html lang="en">
         <body className={poppins.className} >
@@ -35,8 +37,8 @@ export default function RootLayout({ children }) {
             <UiProvider>
             <div className="h-screen flex flex-col">
                 <div className="w-screen h-5/6 grid grid-cols-11 grid-rows-1 gap-2 p-2">
-                <LeftBar />
-                  {children }
+                  <LeftBar />
+                  {children}  
                   <RightBar />   
               </div>
               <div className="h-1/6 flex">

@@ -10,8 +10,9 @@ export const RightBar = () => {
   const{right, rightDispaly,setRightDisplay,setRight}=useContext(UiContext)
   let mouseOver = false
   const [likeColor, setLikeColor] = useState(false)
-  const [showRightBar, setShowRightBar] = useState(true)
-  const rightBar=useRef({width:"3"})
+  const [showRightBar, setShowRightBar] = useState(false)
+  const rightBar = useRef({ width: "3" })
+  
   
   
   const handleMouse=()=>{
@@ -22,11 +23,6 @@ export const RightBar = () => {
     likeColor?setLikeColor(!likeColor):setLikeColor(!likeColor)
   }
   const handleRightBar = () => {
-    if (showRightBar) {
-      setRight(showRightBar);
-      setShowRightBar(!showRightBar)
-      return
-    }
     setRight(showRightBar)
     setRightDisplay("none")
     setShowRightBar(!showRightBar)
@@ -46,9 +42,12 @@ export const RightBar = () => {
     }
   }, [right, rightDispaly])
 
- 
+  // if (right==="" || right) {
+  //   return
+  // } 
+
   return (
-    <div className={` col-span-3`} style={showRightBar ? {display:"block"} : {display:"block"}}>
+    <div className={` ${right?right:'col-span-3'}`} style={rightDispaly ? {display:"block"} : {display:"none"}}>
       <main className='w-full h-full rounded-lg dark:bg-neutral-900 flex flex-col items-center overflow-y-scroll  scrollbar-thin scrollbar-thumb-neutral-500'>
         <div className='w-full p-2'>
             <div className='flex w-full items-center justify-between gap-9 py-2 px-3'>
@@ -64,8 +63,8 @@ export const RightBar = () => {
                 <div className='w-9/12 flex flex-col mb-5'>
                     <Link href='/playlist/89r287t8yd93322f' className='font-semibold text-2xl mb-2 whitespace-nowrap text-ellipsis overflow-hidden cursor-pointer hover:underline'>Spectre</Link>
                     <p className='font-normal flex text-base dark:text-zinc-400 whitespace-nowrap text-ellipsis overflow-hidden'>
-                        <Link href='/artist/ewufi9fjiei23ji' className='mr-2 cursor-pointer hover:underline'>Jim Yosef, </Link>
-                        <Link href='/artist/iwur30pu2048r' className='cursor-pointer whitespace-nowrap text-ellipsis overflow-hidden hover:underline'>Anna Yvette</Link>
+                        <Link href='/artist/ewufi9fjiei23ji' className='mr-2 font-medium cursor-pointer hover:underline'>Jim Yosef, </Link>
+                        <Link href='/artist/iwur30pu2048r' className='cursor-pointer font-medium whitespace-nowrap text-ellipsis overflow-hidden hover:underline'>Anna Yvette</Link>
                     </p>
                 </div>
                 <div className='w-3/12 flex items-center justify-end gap-3'>
@@ -88,10 +87,10 @@ export const RightBar = () => {
                    </span>
                    <span className='text-xs font-medium'> Verified Artist</span>
                   </p>
-               <Image src="/bien2.png" alt="" width={280} height={280} className='rounded-lg object-cover w-full h-full'/>
+               <Image src="/ab6761670000ecd47145333607578eb5c6caea1f.jpg" alt="" width={280} height={280} className='rounded-lg object-cover w-full h-full'/>
                <div className='absolute bottom-6 left-2 '>
-               <p className='text-lg  z-20'>971,407 <span className='text-sm'>monthly listener</span></p>
-               <p className='text-sm z-20'>Electronic music producer from Stolkholm,Sweden</p> 
+               <p className='text-lg z-20 font-medium'>971,407 <span className='text-sm font-bold'>monthly listener</span></p>
+               <p className='text-sm font-medium z-20'>Electronic music producer from Stolkholm,Sweden</p> 
                </div>
             </div>
             <div className='rounded-md mx-3 h-32 dark:bg-neutral-800 flex flex-col justify-center gap-4 px-3 '>
@@ -103,7 +102,7 @@ export const RightBar = () => {
                    <span className='w-1/6' id="nextMusic">{mouseOver?<PlayArrowRounded/>:<MusicNoteRounded/>}</span>
                    <Image src="/faded.jpg" alt="" width={45} height={45} className='rounded-lg object-cover'/>
                    <div className='w-3/6 flex flex-col justify-between gap-1 pl-2'>
-                    <Link href='/playlist/eiu923if3fi3993' className='font-normal text-base hover:underline'>Faded</Link>
+                    <Link href='/playlist/eiu923if3fi3993' className='font-medium text-base hover:underline'>Faded</Link>
                     <Link href="/artist/2309r289nduiubhb" className='font-normal text-sm dark:text-zinc-400 whitespace-nowrap text-ellipsis overflow-hidden hover:underline'>Allan Walker</Link>
                    </div>
                 </div>

@@ -4,7 +4,7 @@ export const UiContext = createContext({
   left: null,
   right: null,
   center: null,
-  rightDispaly: null,
+  rightDispaly: false,
   setRight: () => {},
   setLeft: () => {},
   setRightDisplay: () => {},
@@ -15,17 +15,17 @@ export const UiProvider = ({ children }) => {
     if (noRightBar) {
       setState({
         ...state,
-        center: "7",
-        left: "4",
-        right: "0",
+        center: "col-end-12 col-span-8",
+        left: "col-end-4 col-span-3",
+        right: "",
       });
       return;
     } else {
       setState({
         ...state,
-        center: "5",
-        left: "3",
-        right: "3",
+        center: "col-end-9 col-span-5",
+        left: "col-end-4 col-span-3",
+        right: "col-end-12 col-span-3",
       });
       return;
     }
@@ -35,17 +35,17 @@ export const UiProvider = ({ children }) => {
     if (noLeft) {
       setState({
         ...state,
-        center: "8",
-        left: "3",
-        right: "0",
+        center: "col-end-9 col-span-5",
+        left: "col-end-4 col-span-3",
+        right: "col-end-12 col-span-3",
       });
       return;
     } else {
       setState({
         ...state,
-        center: "7",
-        left: "4",
-        right: "0",
+        center: "col-end-12 col-span-7",
+        left: "col-end-5 col-span-4",
+        right: "",
       });
       return;
     }
@@ -55,18 +55,18 @@ export const UiProvider = ({ children }) => {
     if (display === "none") {
       setState({
         ...state,
-        rightDispaly: display,
-        left: "4",
-        center: "7",
-        right: "0",
+        rightDispaly: false,
+        left: "col-end-4 col-span-3",
+        center: "col-end-12 col-span-8",
+        right: "",
       });
     } else if (display === "block") {
       setState({
         ...state,
-        rightDispaly: display,
-        left: "3",
-        right: "3",
-        center: "5",
+        rightDispaly: true,
+        left: "col-end-4 col-span-3",
+        right: "col-end-12 col-span-3",
+        center: "col-end-9 col-span-5",
       });
     }
   };
@@ -74,7 +74,7 @@ export const UiProvider = ({ children }) => {
     left: null,
     right: null,
     center: null,
-    rightDispaly: null,
+    rightDispaly: false,
     setRight: setRight,
     setLeft: setLeft,
     setRightDisplay: setRightDisplay,

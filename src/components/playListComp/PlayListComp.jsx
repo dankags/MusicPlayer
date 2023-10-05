@@ -8,7 +8,7 @@ export const PlayListComp = () => {
         <Image src='/playlist.webp' alt='' width={50} height={50} className='rounded-lg'/>
        </div>
        <div className='w-10/12 px-2 flex flex-col'>
-          <span className='text-base font-normal'>Lady Jaydee</span>
+          <span className='text-base font-medium'>Lady Jaydee</span>
           <span className='dark:text-stone-400 text-sm font-normal'>playlist</span>
        </div>
     </div>

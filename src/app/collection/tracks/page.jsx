@@ -21,8 +21,8 @@ const Tracks = () => {
   }
 
   return (
-    <div className='col-span-5 h-full rounded-lg overflow-y-scroll container '  onScrollCapture={handleScroll}>
-      <main className='relative  rounded-lg dark:bg-gradient-to-t from-neutral-950 to-violet-900'>
+    <div className={` h-full rounded-lg overflow-y-scroll container ${center ?center:'col-span-8'}`}  onScrollCapture={handleScroll}>
+      <main className='relative  rounded-lg dark:bg-gradient-to-t from-neutral-950 to-indigo-500/50 '>
           <NavBar />
       <div className='h-60 w-full flex pl-4 pb-4 relative items-end bg-[rgb(80, 56, 160)]'>
         <div className='pb-1 w-4/12 '>
@@ -31,17 +31,17 @@ const Tracks = () => {
        <div className='pb-1 pl-4 w-9/12'>
          <section>
            <div className='mb-2'>
-             <span className='font-normal text-neutral-50'>Playlist</span>
+             <span className='font-medium text-neutral-50'>Playlist</span>
            </div>
            <div>
-             <span className='w-full text-6xl text-neutral-50 font-extrabold whitespace-nowrap text-ellipsis overflow-hidden'>Liked Songs</span>
+             <span className='w-full text-6xl text-neutral-50 font-bold whitespace-nowrap text-ellipsis overflow-hidden'>Liked Songs</span>
            </div>
            <div className='flex items-center mt-7'>
             <div className='h-6 w-6 mr-2'>
              <Image src='/crow.jpg' alt='userProfile' width={250} height={250} className='w-full h-full rounded-full object-cover'/>
              </div>
              <span className='mr-2 text-sm text-neutral-50 font-semibold '>Danielkagombe .</span>
-             <span className='text-sm text-neutral-50 font-normal'>12 songs</span>
+             <span className='text-sm text-neutral-50 font-medium'>12 songs</span>
            </div>
          </section>
        </div>
