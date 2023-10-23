@@ -8,6 +8,8 @@ import { RightBar } from '@/components/rightBar/RightBar'
 import { FooterPlayer } from '@/components/footerPlayer/FooterPlayer'
 import { UiContext, UiProvider } from '@/providers/UiContext/MainUi'
 import { useContext, useEffect, useState } from 'react'
+import { CurrentMusicProvider } from '@/providers/currentMusicContext/currentMusic'
+import { UrlProvider } from '@/providers/urlVisited/urlVisited'
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -34,18 +36,22 @@ export default function RootLayout({ children }) {
            </AuthProvider>
             :
             <AuthProvider>
+              <UrlProvider>
+              <CurrentMusicProvider>
             <UiProvider>
             <div className="h-screen flex flex-col">
-                <div className="w-screen h-5/6 grid grid-cols-11 grid-rows-1 gap-2 p-2">
-                  <LeftBar />
+                <div className="w-screen h-[87%] grid grid-cols-11 grid-rows-1 gap-2 p-2">
+                      <LeftBar />    
                   {children}  
                   <RightBar />   
               </div>
-              <div className="h-1/6 flex">
+              <div className="h-[13%] flex flex-shrink-0">
                 <FooterPlayer />
               </div>
               </div>
               </UiProvider>
+                </CurrentMusicProvider>
+                </UrlProvider>
           </AuthProvider>
           }
       </body> 

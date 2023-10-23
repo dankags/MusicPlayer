@@ -1,12 +1,16 @@
 "use client"
 import { Footer } from '@/components/footer/Footer'
 import { NavBar } from '@/components/navbar/NavBar'
+import { useRouter } from 'next/navigation'
 import { UiContext } from '@/providers/UiContext/MainUi'
 import { MoreHorizRounded, PlayArrow, Verified } from '@mui/icons-material'
 import Image from 'next/image'
 import React, { useContext, useEffect, useRef, useState } from 'react'
 
-const ArtistId = () => {
+const ArtistId = ({params}) => {
+  // const router = useRouter()
+  // const {id}=router.query
+  console.log(params)
   const { center } = useContext(UiContext)
   const centerBarWidth = useRef({ state:"col-span-5"})
   console.log(center);
@@ -19,10 +23,10 @@ const ArtistId = () => {
     <div className={`${center ?center:'col-span-8'} rounded-md`} >
       <div className='w-full h-full rounded-md bg-cover relative scrollbar-thin scrollbar-thumb-neutral-700'>
         <div className='absolute top-0 left-0 w-full h-4/6'>
-         <Image src='/ab67618600001016232ef59d01ff851d81cc8b60.jpg' alt='' fill={true} className='h-32 object-cover rounded-lg sticky top-0' />
+         <Image src='/ab67618600001016232ef59d01ff851d81cc8b60.jpg' alt='' fill={true} className=' object-cover rounded-lg sticky top-0' />
        </div>
       
-      <main className='w-full h-full rounded-lg overflow-y-scroll scrollbar-thin scrollbar-thumb-neutral-700 scrollbar-track-neutral-800 absolute top-0 dark:bg-neutral-900 dark:bg-opacity-50 ' >
+      <main className='w-full h-full rounded-lg overflow-y-scroll scrollbar-thin scrollbar-thumb-neutral-700 scrollbar-track-neutral-800 absolute top-0 dark:bg-neutral-900/20 ' >
         <NavBar/>
        <div className='w-full h-52 flex flex-col justify-center pl-4'>
          <div className='h-1/6 flex items-center gap-2'>
@@ -41,11 +45,11 @@ const ArtistId = () => {
             <button className='w-14 h-14 flex items-center sticky top-16 justify-center rounded-full dark:bg-green-500 hover:dark:bg-green-400 cursor-pointer' role='play button'>
               <PlayArrow className='text-neutral-900 text-4xl'/>
             </button>
-            <button className='ring-1 ring-white font-semibold text-xs py-2 px-3 rounded-2xl transition-all duration-300 hover:scale-105 hover:ring-2 hover:dark:bg-neutral-800 hover:dark:bg-opacity-80'>
+            <button className='ring-1 ring-white font-semibold text-base py-2 px-5 rounded-l-full rounded-r-full transition-all duration-300  hover:px-6 hover:ring-2 hover:dark:bg-neutral-800 hover:dark:bg-opacity-80'>
               Follow
             </button>
-            <button className='p-2 rounded-full cursor-pointer hover:dark:bg-neutral-800 hover:dark:text-white'>
-              <MoreHorizRounded className='text-2xl dark:text-stone-400 hover:dark:text-white'/>
+            <button className='group p-2 rounded-full cursor-pointer hover:dark:bg-neutral-800 hover:dark:text-white'>
+              <MoreHorizRounded className='text-2xl dark:text-stone-400 group-hover:dark:text-white'/>
             </button>
           </div>
           <div className='dark:bg-neutral-900  px-4 pt-3'>

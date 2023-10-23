@@ -3,13 +3,15 @@ import { ArrowBackIosRounded, ArrowCircleDown, ArrowForwardIosRounded } from '@m
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import React from 'react'
+import React, { useContext } from 'react'
+import { UiContext } from '@/providers/UiContext/MainUi'
 
-const PlayLisId = () => {
+const PlayLisId = ({params}) => {
   const router = useRouter();
+  const {center}=useContext(UiContext)
 
   return (
-    <div>
+    <div className={`${center ?center:'col-span-8'} rounded-md`} >
         <div>
       <div className="w-full rounded-tr-md flex items-center sticky top-0 px-5 py-2 z-10 dark:bg-transparent">
       <div className="w-6/12 flex items-center">

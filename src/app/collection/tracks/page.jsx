@@ -4,10 +4,18 @@ import { LikedList } from '@/components/likedList/LikedList'
 import { NavBar } from '@/components/navbar/NavBar'
 import { AccessTimeRounded, FavoriteSharp, PlayArrow, PlayArrowRounded } from '@mui/icons-material'
 import Image from 'next/image'
-import React from 'react'
+import React, { useContext } from 'react'
 import './global.css'
+import { UiContext } from '@/providers/UiContext/MainUi'
+import { useDarkMutedColor } from '@/utils/customHooks'
+
 
 const Tracks = () => {
+
+  const { center } = useContext(UiContext)
+  
+  
+
   const handleScroll = (e) => {
     const tableHeader = document.getElementById("tableHeader");
     const table=document.querySelector("#table")
@@ -21,10 +29,12 @@ const Tracks = () => {
   }
 
   return (
-    <div className={` h-full rounded-lg overflow-y-scroll container ${center ?center:'col-span-8'}`}  onScrollCapture={handleScroll}>
-      <main className='relative  rounded-lg dark:bg-gradient-to-t from-neutral-950 to-indigo-500/50 '>
-          <NavBar />
-      <div className='h-60 w-full flex pl-4 pb-4 relative items-end bg-[rgb(80, 56, 160)]'>
+    <div className={` h-full rounded-lg overflow-y-scroll  container ${center ?center:'col-span-8'}`}  onScrollCapture={handleScroll}>
+      <main className='relative  rounded-lg' style={{backgroundColor:`${useDarkMutedColor('/likedSongs.png')}`}} >
+        <div className='sticky top-0 z-10 bg-neutral-950/10'>
+          <NavBar/>
+        </div>
+      <div className='h-60 w-full flex pl-4 pb-4 relative items-end bg-neutral-950/10'>
         <div className='pb-1 w-4/12 '>
           <Image src='/likedSongs.png' alt='likedImage' width={200} height={200} className='shadow-xl shadow-neutral-800'/>
        </div>
@@ -46,7 +56,7 @@ const Tracks = () => {
          </section>
        </div>
       </div>
-      <div id='table' className='w-full listContainer'>
+      <div id='table' className='w-full bg-neutral-950/75'>
       
         <div className='px-4 py-3 relative '>
           <button className='w-14 h-14 flex items-center sticky top-16 justify-center rounded-full dark:bg-green-500 hover:dark:bg-green-400 cursor-pointer' role='play button'>

@@ -23,7 +23,7 @@ export const LeftBar = () => {
 }
 
   return (
-    <div className={`h-full rounded-md ${left ?left:'col-end-4 col-span-3'}`}>
+    <div className={`${left?left:"col-span-3"} h-full rounded-md w-full`}>
         <main className='m-0 p-0 overflow-hidden h-full rounded-md' >
             <div className='w-full h-1/6 overflow-hidden dark:bg-neutral-900 rounded-lg px-2 mb-2 flex flex-col justify-center '>
                <Link href='/' className='no-underline flex items-center mb-2 h-8 pl-3 text-neutral-400 hover:text-neutral-50'>
@@ -81,8 +81,8 @@ export const LeftBar = () => {
                      <span className='w-8 h-8 ml-2 text-neutral-700 flex justify-center items-center rounded-full cursor-pointer hover:dark:bg-neutral-700 hover:text-neutral-50'>
                        <Search/>
                      </span>
-                     <button className='mr-2 text-sm font-medium dark:text-stone-400 hover:dark:text-white'>
-                        Resent <ArrowDropDown className='dark:text-stone-400 hover:dark:text-white'/>
+                     <button className='group mr-2 text-sm font-medium dark:text-stone-400 hover:dark:text-white'>
+                        Resent <ArrowDropDown className='dark:text-stone-400 group-hover:dark:text-white'/>
                      </button>
                   </div>
                   <div className='h-5/6 mx-2 pb-20'>

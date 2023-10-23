@@ -11,7 +11,7 @@ datasource db {
 }
 
 model Account {
-  id                 String  @id @default(auto()) @map("_id") @db.ObjectId
+  id                 String  @id @default(uuid()) @map("_id") @db.ObjectId
   userId             String
   type               String
   provider           String
@@ -30,7 +30,7 @@ model Account {
 }
 
 model Session {
-  id           String  @id @default(auto()) @map("_id") @db.ObjectId
+  id           String  @id @default(uuid()) @map("_id") @db.ObjectId
   sessionToken String   @unique
   userId       String
   expires      DateTime
@@ -38,11 +38,13 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  id            String    @id @default(uuid()) @map("_id") 
   name          String?
   email         String   @unique
   emailVerified DateTime?
   image         String?
+  following     String[]
+ 
   accounts      Account[]
   sessions      Session[]
 }
@@ -56,35 +58,36 @@ model VerificationToken {
 }
 
 model Artist{
-  id String @id @default(uuid()) @map("_id")
+  id String @id @default(uuid()) @map("_id") 
   name String @unique
-  profileImg String
+  profileImg String?
   backImg String?
   artistAbout String?
+  followers String[]
   
   musics Music[]
-  playList Playlist @relation(fields: [name],references: [artistName])
+  playList Playlist[]
 }
 
 model Music{
-  id  String @id @default(uuid()) @map("_id") 
+  id String @id @default(uuid()) @map("_id") 
   musicName String @unique
   categoryName String @unique
-  artistNames String[] 
+  artistNames String @unique
   viewsNumber String
   musicImage String
   audioUrl String
   endTime String
   
   artist Artist @relation(fields: [artistNames],references: [name] )
-  song Playlist @relation(fields: [artistNames],references: [artistName])
+  song Playlist []
   category Category @relation(fields: [categoryName],references: [category])
 } 
 
 model Category{
   id String @id @default(uuid()) @map("_id") 
   category String @unique
-  backgroundColor String @unique
+  backgroundColor String 
   backgroundImg String
 
   musics Music[] 
@@ -97,6 +100,6 @@ model Playlist{
   plalistImg String
   playlistDesc String ?
 
-  artist Artist[]
-  songs Music[]
+  artist Artist @relation(fields: [artistName],references: [name])
+  songs Music @relation(fields: [artistName],references: [artistNames])
 }

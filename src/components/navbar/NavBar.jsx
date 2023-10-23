@@ -1,4 +1,5 @@
 "use client";
+import { useUrlContext } from "@/providers/urlVisited/urlVisited";
 import {
   ArrowBackIosRounded,
   ArrowCircleDown,
@@ -9,25 +10,33 @@ import {
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useRef, useState } from "react";
+import { redirect,usePathname,useRouter } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 
-export const NavBar = () => {
+export const NavBar = ({ color,position }) => {
+  const { prevUrlsPointer, newUrlsPointer,getNextUrl,getPreviousUrl,setNewUrl} = useUrlContext()
   const [play, setPlay] = useState(false);
+  const router = useRouter()
+  const path=usePathname()
   const [menuState,setMenuState] = useState(false)
-  const router = useRouter();
-  const {data, status } = useSession();
-  console.log(data,status);
-  // if (status === 'unauthenticated') {
-  //   router.push("dashboard/login")
-  // }
-
+  const { data, status } = useSession();
+  
+  console.log(data, status);
+ 
   const handlePause = () => {
     play ? setPlay(!play) : setPlay(!play);
   };
 
-  const handleScroll = () => {
+  const handlePrevPage = () => {
+    const prevUrl = getPreviousUrl()
+    console.log(prevUrl);
+    router.push(prevUrl)
+  };
 
+  const handleNextPage = () => {
+    const nextUrl = getNextUrl()
+    console.log(nextUrl);
+   router.push(nextUrl)
   };
 
   const handleDropDownMenu = () => {
@@ -35,13 +44,13 @@ export const NavBar = () => {
    console.log(menuState);
   }
   return (
-    <div className="w-full rounded-tr-md flex items-center sticky top-0 px-5 py-2 z-10 dark:bg-transparent">
+    <div className={` rounded-tr-md flex items-center ${position?position:"sticky"} top-0 left-0 px-5 py-2 z-10 dark:bg-transparent`}>
       <div className="w-6/12 flex items-center">
         <div className="w-3/12 flex items-center gap-2">
-          <button className="w-8 h-8 flex items-center justify-center rounded-full dark:bg-neutral-950 dark:bg-opacity-75 hover:dark:bg-neutral-800"  onClick={()=>{router.back()}}>
+          <button className="w-8 h-8 flex items-center justify-center rounded-full dark:bg-neutral-950/80  hover:dark:bg-neutral-950/95 disabled:cursor-not-allowed disabled:bg-neutral-950/40 disabled:hover:bg-neutral-950/50"  onClick={handlePrevPage} disabled={newUrlsPointer===0?true:false}>
             <ArrowBackIosRounded className="text-lg" />
           </button>
-          <button className="w-8 h-8 flex items-center justify-center rounded-full dark:bg-neutral-950 dark:bg-opacity-40 hover:dark:bg-neutral-800" onClick={()=>{router.forward()}} >
+          <button className="w-8 h-8 flex items-center justify-center rounded-full dark:bg-neutral-950/80 hover:dark:bg-neutral-950/95 disabled:cursor-not-allowed disabled:bg-neutral-950/40 disabled:hover:bg-neutral-950/50 " onClick={handleNextPage} disabled={prevUrlsPointer===0?true:false} >
             <ArrowForwardIosRounded className="text-lg" />
           </button>
         </div>

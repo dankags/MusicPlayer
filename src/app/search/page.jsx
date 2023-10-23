@@ -5,15 +5,58 @@ import { ArrowBackIosRounded, ArrowCircleDown, ArrowForwardIosRounded, SearchRou
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from "next/navigation";
-import React from 'react'
+import React, { useContext,useState,useEffect, useRef } from 'react'
 import "./search.globals.css"
+import { UiContext } from '@/providers/UiContext/MainUi';
+import { data } from 'autoprefixer';
+import { categories } from '@/data/dummyData';
 
-const Search = () => {
+
+
+// eslint-disable-next-line @next/next/no-async-client-component
+const Search =() => {
   const router = useRouter();
+  const {center}=useContext(UiContext)
+  // const [categories,setCategories]=useState(null)
+  const [isLoading, setIsLoading] = useState(false)
+  const [pageWidth,setPageWidth]=useState(0)
+  const pageRef = useRef()
   
+  useEffect(()=>{
+    if (pageRef.current === null) { return }
+    const pageCurrentWidth = pageRef.current.clientWidth
+    console.log(pageCurrentWidth);
+    setPageWidth(pageCurrentWidth)
+  },[center])
 
+  // useEffect(() => {
+  //   const fetchCat = async () => {
+  //   try { 
+  //     const res = await fetch('/api/category')
+  //     if (res.ok) {
+  //       res.json().then((cat) => {
+  //         setCategories(cat)
+  //         setIsLoading(false)
+  //       })
+  //     }
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  //   }
+  //   fetchCat();
+  // },[])
+
+  console.log(categories)
+
+  if (isLoading) {
+    return (
+    <div ref={pageRef} className={`w-full h-full flex items-center justify-center rounded-md relative overflow-y-scroll scrollbar-thin scrollbar-thumb-neutral-700 bg-neutral-900`}>
+      ...loading
+    </div>
+  )
+}
   return (
-    <div className='col-span-5 w-full h-full rounded-md relative overflow-y-scroll scrollbar-thin scrollbar-thumb-neutral-700 bg-neutral-900'>
+    <div ref={pageRef} className={` ${center?center:"col-span-8"} h-full rounded-md relative overflow-y-scroll scrollbar-thin scrollbar-thumb-neutral-700 bg-neutral-900`}>
       <div className="w-full rounded-tr-md flex items-center sticky top-0 px-5 py-2 z-10 dark:bg-neutral-900">
       <div className="w-7/12 flex items-center">
         <div className="w-3/12 flex items-center gap-2">
@@ -24,9 +67,9 @@ const Search = () => {
             <ArrowForwardIosRounded className="text-lg" />
           </button>
         </div>
-          <div className="pl-2 w-9/12 flex items-center bg-transparent justify-between gap-1 p-2 ring-2 dark:ring-white rounded-3xl focus-within:bg-neutral-50/40 searchContainer">
+          <div className="pl-2 w-9/12 flex items-center bg-transparent justify-between gap-1 p-2 rounded-3xl  focus-within:ring-2 focus-within:ring-neutral-50 searchContainer">
             <SearchRounded className='w-1/12'/>
-          <input type="search" name="" id=""  placeholder='What do you want to listen to?' className='w-11/12 text-xs font-semibold text-white bg-transparent  searchInput'/>
+            <input type="search" name="" id="" placeholder='What do you want to listen to?' className={`w-11/12 ${pageWidth<=642?"text-xs placeholder:text-xs":"text-base placeholder:text-base"} font-normal text-white bg-transparent  searchInput`} />
         </div>
       </div>
       <div className="w-5/12 flex items-center justify-end gap-2 ">
@@ -48,17 +91,16 @@ const Search = () => {
         </div>
       </div>
       </div>
-      <div className='flex flex-col gap-3 pt-3 pl-5'>
+      <div className='flex flex-col gap-x-3 gap-y-5 pt-3 px-5'>
         <div className=''>
           <span className='text-lg font-bold'>Browse all</span>
         </div>
-        <div className='flex flex-wrap gap-5'>
-          <SearchCard />
-          <SearchCard />
-          <SearchCard />
-          <SearchCard />
-          <SearchCard />
-          <SearchCard/>
+        <div className='w-full flex flex-wrap flex-shrink-0 justify-between gap-5'>
+          {
+            categories.map((cat) => 
+              <SearchCard key={cat.id} category={cat } pageCurrentWidth={pageWidth}  />
+            )
+          }
         </div>
       </div>
       <Footer/>

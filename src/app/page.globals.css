@@ -5,6 +5,8 @@
   .featuredMusics:hover .featuredmusicBtn{
     display: block;
     transition-duration: 300ms;
+    
+ 
   }
   
   .playListCardBtn{

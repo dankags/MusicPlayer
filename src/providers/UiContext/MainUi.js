@@ -1,6 +1,6 @@
-const { createContext, useState } = require("react");
+const { createContext, useState, useContext } = require("react");
 
-export const UiContext = createContext({
+ export const UiContext = createContext({
   left: null,
   right: null,
   center: null,
@@ -82,3 +82,10 @@ export const UiProvider = ({ children }) => {
   const [state, setState] = useState(InitUiState);
   return <UiContext.Provider value={state}>{children}</UiContext.Provider>;
 };
+
+export function useUiContext() {
+  // if (UiContext) {
+  //    throw new Error("the context is null")
+  // }
+  return useContext(UiContext)
+} 
