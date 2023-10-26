@@ -7,7 +7,7 @@ export const GET = async (req) => {
         if(body.name){
         const musics = await prisma.music.findMany({
             where: {
-                artistNames:body.artistName
+                artistIds:body.artistId
             }
         })
             

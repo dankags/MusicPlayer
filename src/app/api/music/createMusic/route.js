@@ -7,7 +7,7 @@ export const POST = async (req) => {
         const newMusic = await prisma.Music.create({
             musicName:body.musicName,
             categoryName:body.category,
-            artistNames:body.name,
+            artistIds:body.id,
             musicImage:body.image,
             audioUrl:body.audio,
             endTime:body.endTime

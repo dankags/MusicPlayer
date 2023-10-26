@@ -278,11 +278,13 @@ export const FooterPlayer = () => {
   );
 };
 
-const VolumeUi = ({ audio,setMute,Color }) => {
+const VolumeUi = ({ audio, setMute, Color }) => {
   const volumeSlider = useRef(null)
   const color=useRef({color:Color})
   const [volumeProgress,setVolumeProgress]=useState(20)
- 
+  
+  
+  
   const volumeInputHandler = (e, max) => {
     const tempSliderValue = (e.target.value / max) * 100;
     setVolumeProgress(tempSliderValue);
@@ -300,6 +302,10 @@ const VolumeUi = ({ audio,setMute,Color }) => {
     color.current.color = "#FFFFFF";
     ref.current.style.background = `linear-gradient(to right, ${color.current.color} ${value}%,#3a3a3a ${value}%)`;
   }
+
+  useEffect(() => {
+    mouseOuthandler(volumeSlider,volumeProgress)
+  }, [])
   return (
     <div className="w-20 h-1 flex justify-start rounded cursor-pointer">
     <input

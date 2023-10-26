@@ -38,13 +38,15 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(uuid()) @map("_id") 
+  id            String   @id @default(uuid()) @map("_id") 
   name          String?
   email         String   @unique
   emailVerified DateTime?
   image         String?
-  following     String[]
- 
+  followingArtist     String[]
+  admin Boolean @default(false)
+  
+  likedSongs    LikedSong[]
   accounts      Account[]
   sessions      Session[]
 }
@@ -55,6 +57,16 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model LikedSong{
+  id String  @id @default(uuid()) @map("_id")
+  userId String @unique 
+  title String @default("Liked Songs")
+  imageUrl String?
+  songs String[]
+
+  LikedSongId User @relation(fields: [userId],references: [id])
 }
 
 model Artist{
@@ -73,13 +85,16 @@ model Music{
   id String @id @default(uuid()) @map("_id") 
   musicName String @unique
   categoryName String @unique
-  artistNames String @unique
-  viewsNumber String
+  artistIds String @unique
+  viewsNumber Int? @default(0)
   musicImage String
   audioUrl String
-  endTime String
+  duration Float
+  lyrics String?
+  release DateTime?
+  uploaded DateTime @default(now())
   
-  artist Artist @relation(fields: [artistNames],references: [name] )
+  artist Artist @relation(fields: [artistIds],references: [name] )
   song Playlist []
   category Category @relation(fields: [categoryName],references: [category])
 } 
@@ -95,11 +110,11 @@ model Category{
 
 model Playlist{
   id String @id @default(uuid()) @map("_id")
-  artistName String @unique
+  artistId String @unique
   playlistName String @unique
   plalistImg String
   playlistDesc String ?
 
-  artist Artist @relation(fields: [artistName],references: [name])
-  songs Music @relation(fields: [artistName],references: [artistNames])
+  artist Artist @relation(fields: [artistId],references: [id])
+  songs Music @relation(fields: [artistId],references: [artistIds])
 }

@@ -1,3 +1,5 @@
+
+
 const { createContext, useState, useContext } = require("react");
 
  export const UiContext = createContext({
@@ -84,8 +86,9 @@ export const UiProvider = ({ children }) => {
 };
 
 export function useUiContext() {
-  // if (UiContext) {
-  //    throw new Error("the context is null")
+  const Context=useContext(UiContext)
+  // if (Context) {
+  //    throw new Error("the context cannot be used here ")
   // }
-  return useContext(UiContext)
+  return Context
 } 
