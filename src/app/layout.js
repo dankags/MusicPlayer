@@ -1,12 +1,10 @@
 import AuthProvider from '@/providers/AuthProvider'
 import './globals.css'
-// import { usePathname, useRouter } from 'next/navigation'
 import { Figtree } from 'next/font/google'
 import { LeftBar } from '@/components/leftBar/LeftBar'
 import { RightBar } from '@/components/rightBar/RightBar'
 import { FooterPlayer } from '@/components/footerPlayer/FooterPlayer'
 import { UiContext, UiProvider } from '@/providers/UiContext/MainUi'
-// import { useContext, useEffect, useState } from 'react'
 import { CurrentMusicProvider } from '@/providers/currentMusicContext/currentMusic'
 import { UrlProvider } from '@/providers/urlVisited/urlVisited'
 
