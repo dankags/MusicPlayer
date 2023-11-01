@@ -1,4 +1,4 @@
-
+"use client"
 
 const { createContext, useState, useContext } = require("react");
 

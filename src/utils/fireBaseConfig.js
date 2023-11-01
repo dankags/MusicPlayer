@@ -8,10 +8,10 @@ import {getStorage} from "firebase/storage"
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
   authDomain:process.env.FIREBASE_AUTH_DOM ,
-  projectId: process.env.FIREBASE_PROJECT_ID,
-  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.FIREBASE_MESSAGING_ID,
-  appId: process.env.FIREBASE_APP_ID
+  projectId: "spotifyclone-d7d1f",
+  storageBucket: "spotifyclone-d7d1f.appspot.com",
+  messagingSenderId: "569855898270",
+  appId: "1:569855898270:web:c5472f6fa7674dfc44018f"
 };
 
 // Initialize Firebase

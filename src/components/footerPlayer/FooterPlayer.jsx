@@ -22,8 +22,10 @@ import Link from "next/link";
 import { useContext, useEffect, useRef, useState } from "react";
 import "./Footerplayer.globals.css";
 import { UiContext } from "@/providers/UiContext/MainUi";
+import { usePathname } from "next/navigation";
 
 export const FooterPlayer = () => {
+  const path=usePathname()
   const { setRightDisplay, rightDispaly } = useContext(UiContext);
   const [audio, setAudio] = useState(null);
   const musicSlider = useRef(null);
@@ -125,8 +127,12 @@ export const FooterPlayer = () => {
     rightDispaly ? setRightDisplay("none") : setRightDisplay("block");
   };
 
+  if (path.includes("dashboard")) {
+  return
+}
+
   return (
-    <div className="flex w-full h-full items-center">
+    <div className="flex w-full items-center col-span-12 pb-4">
       <div className="flex items-center w-3/12">
         <div className="w-2/6 pr-3 flex items-center justify-end">
           <div className="group relative max-h-14 max-w-[64px] max-sm:h-11 max-sm:w-11 max-md:w-12 max-md:h-12 md:h-14 md:w-16">
@@ -190,15 +196,15 @@ export const FooterPlayer = () => {
             <SkipPrevious className="text-3xl dark:text-zinc-400 " />
           </button>
           <button
-            className="h-9 w-9 rounded-full disabled:cursor-not-allowed disabled:bg-stone-700 disabled:text-neutral-900"
+            className="h-10 w-10 flex items-center justify-center rounded-full disabled:cursor-not-allowed disabled:bg-stone-700 disabled:text-neutral-900"
             disabled={audio?.src ? false : true}
             onClick={handlePlay}
             onKeyPress={(e) => handlePause(e)}
           >
             {play ? (
-              <PauseCircle className="text-4xl hover:scale-105" />
+              <PauseCircle className="text-5xl hover:scale-105" />
             ) : (
-              <PlayCircle className="text-4xl  hover:scale-105 " />
+              <PlayCircle className="text-5xl  hover:scale-105 " />
             )}
           </button>
           <button
@@ -215,7 +221,7 @@ export const FooterPlayer = () => {
           </button>
         </div>
         <div className="flex items-center justify-center mt-3 ">
-          <span className="w-1/12 text-right dark:text-stone-400 font-medium fontClass">
+          <span className="w-1/12 text-right dark:text-stone-400 font-medium text-xs">
             {audio?.src ? `${currentMin}:${currentSec}` : `--:--`}
           </span>
           <div className="mx-1 w-9/12 flex items-center">
@@ -239,7 +245,7 @@ export const FooterPlayer = () => {
               }
             />
           </div>
-          <span className="2/12 dark:text-stone-400  font-medium fontClass">
+          <span className="w-2/12 dark:text-stone-400  font-medium text-xs">
             {audio?.duration
               ? `
               ${

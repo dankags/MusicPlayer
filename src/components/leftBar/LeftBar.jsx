@@ -6,8 +6,11 @@ import { PlayListComp } from '../playListComp/PlayListComp'
 import { AddRounded, ArrowDropDown, ArrowForwardRounded, CloseRounded, HomeOutlined, HorizontalSplit, Search, SearchOutlined } from '@mui/icons-material'
 import Link from 'next/link'
 import { UiContext } from '@/providers/UiContext/MainUi'
+import { usePathname } from 'next/navigation'
+import { twMerge } from 'tailwind-merge'
 
 export const LeftBar = () => {
+  const path=usePathname()
   const { left,setLeft,rightDispaly } = useContext(UiContext)
   const [leftBarWidth, setLeftBarWidth] = useState(false)
   const leftVisibility = useRef({ state:false})
@@ -20,10 +23,14 @@ export const LeftBar = () => {
   const handleExpand = () => {
    leftBarWidth?setLeftBarWidth(leftBarWidth):setLeft(leftBarWidth)
    setLeftBarWidth(!leftBarWidth)   
-}
+  }
+  
+  if (path.includes("dashboard")) {
+    return
+  }
 
   return (
-    <div className={`${left?left:"col-span-3"} h-full rounded-md w-full`}>
+    <div className={`${twMerge("py-2 rounded-md",`${left?left:"col-span-3"}`)}`}>
         <main className='m-0 p-0 overflow-hidden h-full rounded-md' >
             <div className='w-full h-1/6 overflow-hidden dark:bg-neutral-900 rounded-lg px-2 mb-2 flex flex-col justify-center '>
                <Link href='/' className='no-underline flex items-center mb-2 h-8 pl-3 text-neutral-400 hover:text-neutral-50'>

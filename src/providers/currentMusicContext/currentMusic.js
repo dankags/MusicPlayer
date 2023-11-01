@@ -1,3 +1,4 @@
+"use client"
 const { createContext, useState } = require("react");
 
  const CurrentMusic = createContext({

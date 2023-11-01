@@ -21,7 +21,7 @@ const Login = () => {
     e.preventDefault();
   }
   return (
-    <div className='h-screen w-full  flex flex-col items-center overflow-y-scroll dark:bg-gradient-to-t from-neutral-950 to-neutral-900 gap-9'>
+    <div className=' w-full col-span-12 flex flex-col items-center overflow-y-scroll dark:bg-gradient-to-t from-neutral-950 to-neutral-900 gap-9 scrollbar scrollbar-track-transparent scrollbar-thumb-neutral-500'>
       <div className='w-full py-8 pl-10 gap-3 flex items-center justify-start dark:bg-neutral-950'>
         <Image src='/1cfa810c59bd2aa3ce06d4e7ccc3a7e8.jpg' alt='' height={45} width={45} className='object-cover'/>
         <span className=' font-semibold text-2xl dark:text-neutral-50'>Spotify</span>

@@ -26,7 +26,7 @@ const Register = () => {
   const [showPassWord, setShowPassWord] = useState(false);
 
   return (
-    <div className="h-screen w-full flex flex-col items-center bg-white text-black overflow-y-auto">
+    <div className=" w-full col-span-12 flex flex-col items-center bg-white text-black overflow-y-auto scrollbar-none hover:scrollbar scrollbar-track-transparent scrollbar-thumb-neutral-500">
       <div>
         <div className="flex items-center justify-center pt-16 pb-4">
           <Image

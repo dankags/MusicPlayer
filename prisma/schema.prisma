@@ -77,6 +77,7 @@ model Artist{
   artistAbout String?
   followers String[]
   
+
   musics Music[]
   playList Playlist[]
 }
@@ -86,17 +87,19 @@ model Music{
   musicName String @unique
   categoryName String @unique
   artistIds String @unique
-  viewsNumber Int? @default(0)
+  viewsNumber Int @default(0)
   musicImage String
   audioUrl String
-  duration Float
+  duration String
   lyrics String?
   release DateTime?
   uploaded DateTime @default(now())
   
-  artist Artist @relation(fields: [artistIds],references: [name] )
+  
+  artist Artist @relation(fields: [artistIds],references: [id] )
   song Playlist []
   category Category @relation(fields: [categoryName],references: [category])
+  
 } 
 
 model Category{
@@ -105,7 +108,7 @@ model Category{
   backgroundColor String 
   backgroundImg String
 
-  musics Music[] 
+musics Music[] 
 }
 
 model Playlist{

@@ -4,10 +4,13 @@ import { UrlContext, useUrlContext } from '@/providers/urlVisited/urlVisited'
 import { CloseRounded, FavoriteBorderOutlined, FavoriteSharp, MoreHorizRounded, MusicNoteRounded, PlayArrowRounded, VerifiedRounded } from '@mui/icons-material'
 import Image from 'next/image'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 // import Link from 'next/link'
 import React, { useContext, useEffect, useRef, useState } from 'react'
+import { twMerge } from 'tailwind-merge'
 
 export const RightBar = () => {
+  const path=usePathname()
   const {setNewUrl}=useContext(UrlContext)
   const{right, rightDispaly,setRightDisplay,setRight}=useContext(UiContext)
   let mouseOver = false
@@ -41,12 +44,12 @@ export const RightBar = () => {
     }
   }, [right, rightDispaly])
 
-  // if (right==="" || right) {
-  //   return
-  // } 
+  if (path.includes("dashboard")) {
+    return
+  }
 
   return (
-    <div className={` ${right?right:'col-span-3'}`} style={rightDispaly ? {display:"block"} : {display:"none"}}>
+    <div className={`${twMerge( `py-2 ${rightDispaly?"block":"hidden"}  overflow-hidden`,`${right?right:'col-span-3'}`) }`} >
       <main className='w-full h-full rounded-lg px-3 dark:bg-neutral-900 flex flex-col items-center overflow-y-scroll  scrollbar-thin scrollbar-thumb-neutral-500'>
         <div className='w-full p-2'>
             <div className='flex w-full items-center justify-between gap-9 py-2'>

@@ -5,7 +5,10 @@ import { NavBar } from '@/components/navbar/NavBar'
 import { Footer } from '@/components/footer/Footer'
 import Image from 'next/image'
 import { Create } from '@mui/icons-material'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
+import cloud from '@/utils/cloudinaryConfig'
+
 
 const categories = [
   "hiphop",
@@ -20,26 +23,29 @@ const categories = [
 ]
 
 const Music = () => {
+  const [musicName, setMusicName] = useState(null)
+  const [categoryOpt,setCategoryOpt]=useState(null)
   const [imgUrl, setImgUrl] = useState(null)
   const [audioName,setAudioName]=useState(null)
   const [audioFile, setAudioFile] = useState(null)
   const [imageFile, setImageFile] = useState(null)
   const [audioDuration,setAudioDuration]=useState(null)
-  const [audio,setAudio]=useState(null)
+  const [audio, setAudio] = useState(null)
+  const [fireBaseAudioUrl, setFirebaseAudioUrl] = useState("")
+  const [imgCloudinaryUrl,setImgCloudinaryUrl]=useState("") 
   const { center } = useUiContext()
 
   useEffect(() => {
-   setAudio(new Audio())
+    setAudio(new Audio())
+    
 },[])
 
-  const handleUploadMusic = (e) => {
-    e.preventDefault();
-  }
-  const handleImageFile = (e) => {
-    const file = e.target.files[0]
-    setImageFile(file)
-    const url = URL.createObjectURL(file)
-    setImgUrl(url)
+const handleImageFile = async(e) => {
+  const file = e.target.files[0]
+  setImageFile(file)
+  const url = URL.createObjectURL(file)
+  setImgUrl(url)
+  
   }
   const handleAudioFile = (e) => {
     const file = e.target.files[0]
@@ -57,7 +63,97 @@ const Music = () => {
         audio.src=null
       }
     })
+
+  
+
+
   }
+
+  useEffect(() => {
+    const upload = () => {
+      const name=new Date().getTime + audioFile.name
+      const storageRef = ref(storage, name);
+  
+  const uploadTask = uploadBytesResumable(storageRef, audioFile);
+
+      uploadTask.on('state_changed', 
+  (snapshot) => {
+    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+    console.log('Upload is ' + progress + '% done');
+    switch (snapshot.state) {
+      case 'paused':
+        console.log('Upload is paused');
+        break;
+      case 'running':
+        console.log('Upload is running');
+        break;
+    }
+  }, 
+  (error) => {
+    // Handle unsuccessful uploads
+    console.log(error);
+    return
+  }, 
+  () => {
+    
+    getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+      setFirebaseAudioUrl(`${downloadURL}`)
+      
+    });
+  }
+);
+    }
+    audioFile&&upload()
+  },[audioFile])
+
+  useEffect(() => {
+    const upload = async () => {
+      const formData = new FormData()
+    const imageUniqueId = new Date().getTime + imageFile.name
+    formData.append("file", imageFile)
+    formData.append("publicId",imageUniqueId)
+    formData.append("upload_preset","my-uploads")
+    const cloudinaryRes=await fetch("https://api.cloudinary.com/v1_1/dxqbb56ul/image/upload",{
+      method:"POST",
+      body:formData
+    }).then(res => res.json()).catch((error) => {
+      console.log(error)
+      return
+    })
+  setImgCloudinaryUrl(`${cloudinaryRes.url}`)
+    }
+    imageFile&&upload()
+  },[imageFile])
+  
+  const handleUploadMusic = async (e) => {
+    e.preventDefault();
+    //upload image
+    console.log(imgCloudinaryUrl)
+    const data={
+      musicName:musicName,
+      categoryName:categoryOpt,
+      artistIds:"a3f5954c-8702-4766-adde-e952af96306c",
+      musicImage:imgCloudinaryUrl,
+      audioUrl:fireBaseAudioUrl,
+      duration:audioDuration
+  }
+    
+    
+    if (fireBaseAudioUrl) {
+      try {
+      const res = await fetch('/api/music/create', {
+      method: 'POST',
+      body:JSON.stringify(data)
+      }).then(res=>res.json()).catch(error=>console.log(error))
+      
+      console.log(res);
+    } catch (error) {
+        console.log(error);
+    }}
+      
+    
+  }
+ 
   return (
     <div className={` ${center?center:"col-span-8"} h-full overflow-y-scroll scrollbar scrollbar-thumb-neutral-800 rounded-md relative bg-neutral-900`}>
       <NavBar position={"sticky"} />
@@ -81,15 +177,16 @@ const Music = () => {
           <span className='w-full text-xl text-center font-bold  '>upload form</span>
 
           <div className='w-full flex flex-col gap-2'>
-          <label htmlFor="music" className='text-sm font-medium'>music name</label>
-        <input type="text" name="" id="music" required className='h-10 rounded-sm px-2 text-sm text-black font-medium focus:dark:outline-green-600' />
+          <label htmlFor="musicName" className='text-sm font-medium'>music name</label>
+        <input onChange={e=>setMusicName(e.target.value)} type="text" name="" id="musicName" required className='h-10 rounded-sm px-2 text-sm text-black font-medium focus:dark:outline-green-600' />
           </div>
 
           <div className='w-full flex flex-col gap-2'>
           <label htmlFor="Email" className='text-sm font-medium'>category</label>
-          <select
+            <select
+                  onChange={e=>setCategoryOpt(e.target.value)}
                   name="months"
-                  id="month"
+                  id="category"
                   placeholder="Month"
                   required
                   className="pl-2 py-2 ring-1 ring-gray-500 rounded-md text-base font-medium text-neutral-950 focus:outline-green-500"
