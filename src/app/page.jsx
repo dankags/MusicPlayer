@@ -29,7 +29,7 @@ export default function Home() {
     setCenterBarWidth(center);
   },[center])
   return (
-    <div ref={pageRef} className={`py-2 dark:bg-black rounded-md ${center ?center:'col-span-8'}`} >
+    <div ref={pageRef} className={`pt-2 dark:bg-black rounded-md ${center ?center:'col-span-8'}`} >
     <div className='overflow-y-scroll  w-full h-full relative rounded-md scrollbar-thin scrollbar-thumb-neutral-700 bg-neutral-900 '>
       <div className={`w-full mb-4`} style={{backgroundImage:`linear-gradient(0deg,#171717,${containerColor})`}}>
         

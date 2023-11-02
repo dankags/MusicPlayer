@@ -44,7 +44,7 @@ export const NavBar = ({ color,position }) => {
    console.log(menuState);
   }
   return (
-    <div className={` rounded-tr-md flex items-center ${position?position:"sticky"} top-0 left-0 px-5 py-2 z-10 dark:bg-transparent`}>
+    <div className={` rounded-tr-md flex items-center ${position ? position : "sticky"} top-0 left-0 px-5 py-2 z-10 dark:bg-transparent`} style={color ? { backgroundColor: `${color}` } :{backgroundColor:'transparent'}}>
       <div className="w-6/12 flex items-center">
         <div className="w-3/12 flex items-center gap-2">
           <button className="w-8 h-8 flex items-center justify-center rounded-full dark:bg-neutral-950/80  hover:dark:bg-neutral-950/95 disabled:cursor-not-allowed disabled:bg-neutral-950/40 disabled:hover:bg-neutral-950/50"  onClick={handlePrevPage} disabled={newUrlsPointer===0?true:false}>

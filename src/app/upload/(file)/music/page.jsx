@@ -155,7 +155,8 @@ const handleImageFile = async(e) => {
   }
  
   return (
-    <div className={` ${center?center:"col-span-8"} h-full overflow-y-scroll scrollbar scrollbar-thumb-neutral-800 rounded-md relative bg-neutral-900`}>
+    <div className={`pt-2  ${center?center:"col-span-8"} `}>
+    <div className={`h-full overflow-y-scroll scrollbar scrollbar-thumb-neutral-800 rounded-md relative bg-neutral-900`}>
       <NavBar position={"sticky"} />
       <div className='p-3 flex justify-start items-center'>
         <span className='text-2xl font-bold mb-3'>Upload music</span>
@@ -225,7 +226,8 @@ const handleImageFile = async(e) => {
 
       </form>
       <Footer/>
-    </div>
+      </div>
+      </div>
   )
 }
 export default Music

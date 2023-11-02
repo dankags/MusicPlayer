@@ -30,7 +30,8 @@ export default function RootLayout({ children }) {
             <UiProvider>
             <div className="h-screen">
                 <div className="w-full h-full  grid grid-cols-11 grid-rows-1 gap-2 ">
-                      <LeftBar />    
+                      <LeftBar />   
+                      
                   {children}  
                       <RightBar />
                       <FooterPlayer/>

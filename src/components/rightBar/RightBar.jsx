@@ -49,7 +49,7 @@ export const RightBar = () => {
   }
 
   return (
-    <div className={`${twMerge( `py-2 ${rightDispaly?"block":"hidden"}  overflow-hidden`,`${right?right:'col-span-3'}`) }`} >
+    <div className={`${twMerge( `pt-2 ${rightDispaly?"block":"hidden"}  overflow-hidden`,`${right?right:'col-span-3'}`) }`} >
       <main className='w-full h-full rounded-lg px-3 dark:bg-neutral-900 flex flex-col items-center overflow-y-scroll  scrollbar-thin scrollbar-thumb-neutral-500'>
         <div className='w-full p-2'>
             <div className='flex w-full items-center justify-between gap-9 py-2'>

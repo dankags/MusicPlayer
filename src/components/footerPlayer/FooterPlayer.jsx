@@ -98,6 +98,8 @@ export const FooterPlayer = () => {
       const currentminute = Math.floor((currentTime % 3600) / 60);
       const currentSecond = Math.floor((currentTime % 3600) % 60);
 
+    
+
       setMusicProgress((100 * currentTime) / musicDuration);
       if (musicSliderMouseOver.current.state) {
         mouseoverhandler(musicSlider, (100 * currentTime) / musicDuration);
@@ -308,7 +310,10 @@ const VolumeUi = ({ audio, setMute, Color }) => {
     color.current.color = "#FFFFFF";
     ref.current.style.background = `linear-gradient(to right, ${color.current.color} ${value}%,#3a3a3a ${value}%)`;
   }
-
+  useEffect(() => {
+    if(audio){audio.volume=volumeProgress / 100} 
+  }, [audio])
+  
   useEffect(() => {
     mouseOuthandler(volumeSlider,volumeProgress)
   }, [])

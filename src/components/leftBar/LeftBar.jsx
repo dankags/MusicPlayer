@@ -30,16 +30,16 @@ export const LeftBar = () => {
   }
 
   return (
-    <div className={`${twMerge("py-2 rounded-md",`${left?left:"col-span-3"}`)}`}>
+    <div className={`${twMerge("pt-2 pl-2 rounded-md",`${left?left:"col-span-3"}`)}`}>
         <main className='m-0 p-0 overflow-hidden h-full rounded-md' >
             <div className='w-full h-1/6 overflow-hidden dark:bg-neutral-900 rounded-lg px-2 mb-2 flex flex-col justify-center '>
-               <Link href='/' className='no-underline flex items-center mb-2 h-8 pl-3 text-neutral-400 hover:text-neutral-50'>
+               <Link href='/' className={`no-underline flex items-center mb-2 h-8 pl-3  ${path==="/"?"text-white":"text-neutral-400 hover:text-neutral-50"} `}>
                 <span className='mr-2'>
                   <HomeOutlined className='text-3xl'/>
                 </span>
                 <span className='text-base font-medium '>Home</span>
                </Link>
-               <Link href='/search' className='no-underline flex items-center h-8 pl-3 text-neutral-400 hover:text-neutral-50'>
+               <Link href='/search' className={`no-underline flex items-center h-8 pl-3 ${path==="/search"?"text-white":"text-neutral-400 hover:text-neutral-50"} `}>
                 <span className='mr-2'> 
                   <SearchOutlined className='text-3xl'/>
                 </span>
