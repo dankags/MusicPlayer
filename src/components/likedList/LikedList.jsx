@@ -4,7 +4,7 @@ import React from 'react'
 
 export const LikedList = () => {
   return (
-    <div className='flex py-2 mx-4 rounded-md hover:dark:bg-neutral-800'>
+    <div className='flex py-2  rounded-md hover:dark:bg-neutral-800'>
     <div className='w-6/12 pl-4 flex items-center'>
       <div className='flex items-center'>
         <PlayArrowRounded className='text-lg'/>

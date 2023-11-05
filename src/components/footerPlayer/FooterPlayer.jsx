@@ -23,9 +23,11 @@ import { useContext, useEffect, useRef, useState } from "react";
 import "./Footerplayer.globals.css";
 import { UiContext } from "@/providers/UiContext/MainUi";
 import { usePathname } from "next/navigation";
+import { useCurrentMusicContext } from "@/providers/currentMusicContext/currentMusic";
 
 export const FooterPlayer = () => {
-  const path=usePathname()
+  const path = usePathname()
+  const {currentSong}=useCurrentMusicContext()
   const { setRightDisplay, rightDispaly } = useContext(UiContext);
   const [audio, setAudio] = useState(null);
   const musicSlider = useRef(null);
@@ -39,12 +41,19 @@ export const FooterPlayer = () => {
   const [currentMin, setCurrentMin] = useState(`00`);
   const [currentSec, setCurrentSec] = useState(`00`);
 
+  console.log(currentSong);
+
   useEffect(() => {
     setAudio(
-      new Audio("/Alan Walker _The Spectre (Lyrics _ Lyrics Video) (1).mp3")
+      new Audio(currentSong.audioUrl)
     );
     
   }, []);
+  useEffect(() => {
+    if (currentSong) {
+     if( audio){ audio.src = currentSong.audioUrl}
+    }
+  },[currentSong])
 
   useEffect(() => {
     if (rightDispaly) {
@@ -198,7 +207,7 @@ export const FooterPlayer = () => {
             <SkipPrevious className="text-3xl dark:text-zinc-400 " />
           </button>
           <button
-            className="h-10 w-10 flex items-center justify-center rounded-full disabled:cursor-not-allowed disabled:bg-stone-700 disabled:text-neutral-900"
+            className="h-9 w-9 flex items-center justify-center rounded-full disabled:cursor-not-allowed disabled:bg-stone-700 disabled:text-neutral-900"
             disabled={audio?.src ? false : true}
             onClick={handlePlay}
             onKeyPress={(e) => handlePause(e)}
@@ -248,16 +257,16 @@ export const FooterPlayer = () => {
             />
           </div>
           <span className="w-2/12 dark:text-stone-400  font-medium text-xs">
-            {audio?.duration
+            {currentSong.duration
               ? `
               ${
-                Math.floor((audio?.duration % 3600) / 60) < 10
-                  ? `0${Math.floor((audio?.duration % 3600) / 60)}`
-                  : Math.floor((audio?.duration % 3600) / 60)
+                Math.floor((parseFloat(currentSong.duration) % 3600) / 60) < 10
+                  ? `0${Math.floor((parseFloat(currentSong.duration) % 3600) / 60)}`
+                  : Math.floor((parseFloat(currentSong.duration) % 3600) / 60)
               }:${
-                  Math.floor((audio?.duration % 3600) % 60) < 10
-                    ? `0${Math.floor((audio?.duration % 3600) % 60)}`
-                    : Math.floor((audio?.duration % 3600) % 60)
+                  Math.floor((parseFloat(currentSong.duration) % 3600) % 60) < 10
+                    ? `0${Math.floor((parseFloat(currentSong.duration) % 3600) % 60)}`
+                    : Math.floor((parseFloat(currentSong.duration) % 3600) % 60)
                 }
               `
               : `--:--`}

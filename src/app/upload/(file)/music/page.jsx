@@ -29,7 +29,7 @@ const Music = () => {
   const [audioName,setAudioName]=useState(null)
   const [audioFile, setAudioFile] = useState(null)
   const [imageFile, setImageFile] = useState(null)
-  const [audioDuration,setAudioDuration]=useState(null)
+  const [audioDuration,setAudioDuration]=useState("")
   const [audio, setAudio] = useState(null)
   const [fireBaseAudioUrl, setFirebaseAudioUrl] = useState("")
   const [imgCloudinaryUrl,setImgCloudinaryUrl]=useState("") 
@@ -59,7 +59,7 @@ const handleImageFile = async(e) => {
       if (audio.currentTime>=0.5) {
         audio.pause()
         console.log(audio.duration);
-        setAudioDuration(audio.duration)
+        setAudioDuration(`${audio.duration}`)
         audio.src=null
       }
     })
@@ -72,7 +72,7 @@ const handleImageFile = async(e) => {
   useEffect(() => {
     const upload = () => {
       const name=new Date().getTime + audioFile.name
-      const storageRef = ref(storage, name);
+      const storageRef = ref(storage, audioFile.name);
   
   const uploadTask = uploadBytesResumable(storageRef, audioFile);
 
@@ -137,7 +137,7 @@ const handleImageFile = async(e) => {
       audioUrl:fireBaseAudioUrl,
       duration:audioDuration
   }
-    
+    console.log(data);
     
     if (fireBaseAudioUrl) {
       try {

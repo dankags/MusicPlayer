@@ -95,7 +95,8 @@ export const NavBar = ({ color,position }) => {
       {
        menuState ?
       <div className="w-32 absolute right-3 top-14 bg-neutral-800 text-base flex flex-col items-center rounded-md " >
-            <span  className='w-full rounded-t-md py-2 text-center cursor-pointer text-sm font-semibold hover:bg-neutral-700/75'>Account</span>
+            <span className='w-full rounded-t-md py-2 text-center cursor-pointer text-sm font-semibold hover:bg-neutral-700/75'>Account</span>
+            <Link href="/user/disnciowowiwec" className="w-full  py-2 text-center cursor-pointer text-sm font-semibold hover:bg-neutral-700/75">Profile</Link>
             <span  className='w-full py-2 text-center cursor-pointer text-sm font-semibold hover:bg-neutral-700/75'>Playlist</span>
             <span className='w-full py-2 text-center cursor-pointer text-sm font-semibold hover:bg-neutral-700/75'>PlayList</span>
             <hr className='w-10/12 dark:border-neutral-700 my-2' />

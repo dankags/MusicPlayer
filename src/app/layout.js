@@ -10,9 +10,7 @@ import { UrlProvider } from '@/providers/urlVisited/urlVisited'
 
 const figTree = Figtree({
   subsets: ["latin"],
-  display: 'swap',
-  variable:'--font-roboto',
-  weight: ['300','400','500','600','700','800','900'],
+  
 })
 
 export const metadata = {
